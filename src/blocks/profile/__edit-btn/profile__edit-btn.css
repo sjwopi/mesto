@@ -1,0 +1,11 @@
+.profile__edit-btn {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background: url("../../../img/edit-button.svg") center/contain no-repeat;
+}

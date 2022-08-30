@@ -1,0 +1,15 @@
+.avatar__img {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../../img/avatar-hover.png") 100%/100% no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    opacity: 0;
+    transition: all 0.5s;
+}
+.avatar__img:hover {
+    opacity: 1;
+}

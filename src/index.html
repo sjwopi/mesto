@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Document</title>
+</head>
+
+<body class="root">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <img src="img/logo.svg" alt="логотип" class="header__logo">
+        <div class="header__line"></div>
+    </header>
+
+    <main class="content">
+        <!-- Секция с профилем пользователя -->
+        <section class="profile">
+
+            <div class="profile__info">
+                <!-- В макете и брифе вроде не указано на возможность поменять фото, но я чуть позже попробую -->
+                <div class="profile__avatar avatar"> 
+                    <div class="avatar__img"></div>
+                </div>
+
+                <div class="profile__text">
+                    <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-btn hover"></button>
+                    <p class="profile__description">Иследователь океана</p>
+                </div>
+            </div>
+
+            <button class="profile__add-btn hover"></button>
+
+        </section>
+        <div class="popup">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+            </div>
+        </div>
+
+
+        <!-- Cекция с публикациями -->
+        <section class="elements">
+            <ul class="elements__list">
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+                <li class="elements__list-item">
+                    <article class="element">
+                        <div class="element__img"></div>
+                        <p class="element__caption"></p>
+                        <div class="element__like"></div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <p class="footer__text">&copy; 2022. Ivan Teteruk & Yandex.Praktikum</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+
+</html>

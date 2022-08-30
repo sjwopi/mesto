@@ -1,0 +1,11 @@
+.profile__add-btn {
+    width: 150px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 3px;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    background: url("../../../img/add-btn.svg") center/22px no-repeat;
+}
