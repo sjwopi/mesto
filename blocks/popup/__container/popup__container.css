@@ -1,10 +1,14 @@
 .popup__container {
-    width: 430px;
-    height: 330px;
-    border-radius: 5px;
+    width: 360px;
+    height: 260px;
+    padding: 35px;
+    border-radius: 8px;
     background-color: white;
     position: relative;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
