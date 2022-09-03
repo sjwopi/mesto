@@ -6,3 +6,14 @@
     line-height: 48px;
     font-weight: 500;
 }
+@media screen and (max-width: 934px) {
+    .profile__full-name {
+        margin: 0 10px 14px 0;
+    }
+}
+@media screen and (max-width: 500px) {
+    .profile__full-name {
+        font-size: 27px;
+        line-height: 33px;
+    }
+}

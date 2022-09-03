@@ -4,3 +4,8 @@
     display: flex;
     align-items: center;
 }
+@media screen and (max-width: 934px) {
+    .profile__info {
+        flex-direction: column;
+    }
+}

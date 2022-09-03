@@ -1,4 +1,4 @@
-.popup__save-btn {
+.form__save {
     background: black;
     width: 100%;
     height: 50px;
@@ -6,4 +6,8 @@
     border: none;
     font: inherit;
     color: inherit;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
 }

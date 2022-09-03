@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -34,19 +34,23 @@
             </div>
 
             <button class="profile__add-btn hover"></button>
-
         </section>
+        <!-- Попап -->
         <div class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__edit_name">
-                <input class="popup__edit_description">
-                <button class="popup__save-btn">
-                    <p class="popup__save-text">Сохранить</p>
-                </button>
-                <button class="popup__close-btn"></button>
+
+                <form class="form">
+                    <input name="login" value="Жак-Ив Кусто" class="form__name">
+                    <input name="description" value="Иследователь океана" class="form__description">
+                    <input type="submit" value="Отправить" class="form__save">
+                </form>
+
+
+                <button class="popup__close-btn hover"></button>
             </div>
         </div>
+        
 
 
         <!-- Cекция с публикациями -->
@@ -59,7 +63,7 @@
 
                         <div class="element__caption">
                             <p class="element__text">Карачаевск</p>
-                            <div class="element__like"></div>
+                            <span id="elem1" class="element__like hover"></span>
                         </div>
 
                     </article>
@@ -67,56 +71,56 @@
                 <li class="elements__list-item">
                     <article class="element">
                         <img src="img/element-img2.png" alt="фото публикация" class="element__img"></img>
-                        
+
                         <div class="element__caption">
                             <p class="element__text">Карачаевск</p>
-                            <div class="element__like"></div>
+                            <span class="element__like"></span>
                         </div>
-                        
+
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
                         <img src="img/element-img3.png" alt="фото публикация" class="element__img"></img>
-                        
+
                         <div class="element__caption">
                             <p class="element__text">Домбай</p>
-                            <div class="element__like"></div>
+                            <span class="element__like"></span>
                         </div>
-                        
+
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
                         <img src="img/element-img4.png" alt="фото публикация" class="element__img"></img>
-                        
+
                         <div class="element__caption">
                             <p class="element__text">Карачаево-Черкесово</p>
-                            <div class="element__like"></div>
+                            <span class="element__like"></span>
                         </div>
-                        
+
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
                         <img src="img/element-img5.png" alt="фото публикация" class="element__img"></img>
-                        
+
                         <div class="element__caption">
                             <p class="element__text">Домбай</p>
-                            <div class="element__like"></div>
+                            <span class="element__like"></span>
                         </div>
-                        
+
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
                         <img src="img/element-img6.png" alt="фото публикация" class="element__img"></img>
-                        
+
                         <div class="element__caption">
                             <p class="element__text">Карачаево-Черкесово</p>
-                            <div class="element__like"></div>
+                            <span class="element__like"></span>
                         </div>
-                        
+
                     </article>
                 </li>
             </ul>

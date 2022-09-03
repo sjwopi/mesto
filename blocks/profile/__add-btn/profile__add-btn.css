@@ -9,3 +9,8 @@
     background-color: transparent;
     background: url("../../../img/add-btn.svg") center/22px no-repeat;
 }
+@media screen and (max-width: 934px) {
+    .profile__add-btn {
+        width: 282px;
+    }
+}
