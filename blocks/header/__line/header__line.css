@@ -3,7 +3,7 @@
     height: 1px;
     background-color: #545454;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 @media screen and (max-width: 934px) {
     .header__line {
