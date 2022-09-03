@@ -1,6 +1,6 @@
 .element {
     width: 282px;
-    height: 361px;
+    height: auto;
     background-color: white;
     border-radius: 8px;
     display: flex;

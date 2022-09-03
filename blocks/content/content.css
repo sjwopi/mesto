@@ -4,6 +4,6 @@
 }
 @media screen and (max-width: 1024px) {
     .content {
-        margin: 0 10vw;
+        margin: 0;
     }
 }
