@@ -7,9 +7,11 @@
     background: url("../../../images/close-icon.svg") center/cover no-repeat;
     padding: 0;
     border: none;
-    font: inherit;
-    color: inherit;
-    background-color: transparent;
+    transition: all .3s;
+}
+
+.popup__close-btn:hover {
+    opacity: 0.6;
 }
 @media screen and (max-width: 600px) {
     .popup__close-btn {

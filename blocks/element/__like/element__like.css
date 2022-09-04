@@ -8,4 +8,8 @@
     right: 20px;
     bottom: 30px;
     background: url("../../../images/like.png") center/cover no-repeat;
+    transition: all .3s;
+}
+.element__like:hover {
+    opacity: 0.6;
 }

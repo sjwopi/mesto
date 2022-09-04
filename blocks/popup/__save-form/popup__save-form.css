@@ -10,6 +10,10 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
+    transition: all .3s;
+}
+.popup__save-form:hover {
+    opacity: 0.8;
 }
 @media screen and (max-width: 600px) {
     .popup__save-form {
