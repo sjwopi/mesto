@@ -8,8 +8,7 @@
 }
 @media screen and (max-width: 1024px) {
     .elements__list {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        grid-template-columns: repeat(2, minmax(200px, 500px));
     }
 }
 @media screen and (max-width: 750px) {

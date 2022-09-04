@@ -1,6 +1,11 @@
 .element__like {
+    padding: 0;
+    border: none;
+    cursor: pointer;
     width: 22px;
     height: 19px;
-    margin: auto 0;
-    background: url("../../../img/like.png") center/cover no-repeat;
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    background: url("../../../images/like.png") center/cover no-repeat;
 }

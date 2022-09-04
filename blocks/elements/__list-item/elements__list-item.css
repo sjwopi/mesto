@@ -10,6 +10,6 @@
     }
 
     .elements__list-item:last-child {
-        margin: 0;
+        margin: 0 ;
     }
 }

@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
-    <title>Document</title>
+    <title>Место</title>
 </head>
 
 <body class="root">
     <!-- Шапка сайта -->
     <header class="header">
-        <img src="img/logo.svg" alt="логотип" class="header__logo">
-        <div class="header__line"></div>
+        <img src="images/logo.svg" alt="логотип" class="header__logo">
     </header>
 
     <main class="content">
@@ -21,104 +20,88 @@
         <section class="profile">
 
             <div class="profile__info">
-                <!-- В макете и брифе вроде не указано на возможность поменять фото, но я чуть позже попробую -->
-                <div class="profile__avatar avatar">
-                    <div class="avatar__img"></div>
-                </div>
+                
+                <img src="images/avatar.png" alt="аватарка" class="profile__avatar"></img>
+                <button type="button" class="profile__avatar-btn"></button>
 
                 <div class="profile__text">
-                    <h1 class="profile__full-name">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-btn hover"></button>
+                    <div class="profile__name-block">
+                        <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-btn hover"></button>
+                    </div>
                     <p class="profile__description">Иследователь океана</p>
                 </div>
             </div>
 
-            <button class="profile__add-btn hover"></button>
+            <button type="button" class="profile__add-btn hover"></button>
         </section>
-        <!-- Попап -->
-        <div class="popup">
-            <div class="popup__container">
-                <h2 class="popup__title">Редактировать профиль</h2>
-
-                <form class="form">
-                    <input name="login" value="Жак-Ив Кусто" class="form__name">
-                    <input name="description" value="Иследователь океана" class="form__description">
-                    <input type="submit" value="Отправить" class="form__save">
-                </form>
-
-
-                <button class="popup__close-btn hover"></button>
-            </div>
-        </div>
-        
-
-
+    
         <!-- Cекция с публикациями -->
         <section class="elements">
             <ul class="elements__list">
                 <li class="elements__list-item">
                     <article class="element">
 
-                        <img src="img/element-img1.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img1.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Карачаевск</p>
-                            <span id="elem1" class="element__like hover"></span>
+                            <h2 class="element__text">Карачаевск</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
-                        <img src="img/element-img2.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img2.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Карачаевск</p>
-                            <span class="element__like"></span>
+                            <h2 class="element__text">Карачаевск</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
-                        <img src="img/element-img3.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img3.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Домбай</p>
-                            <span class="element__like"></span>
+                            <h2 class="element__text">Домбай</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
-                        <img src="img/element-img4.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img4.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Карачаево-Черкесово</p>
-                            <span class="element__like"></span>
+                            <h2 class="element__text">Карачаево-Черкесово</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
-                        <img src="img/element-img5.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img5.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Домбай</p>
-                            <span class="element__like"></span>
+                            <h2 class="element__text">Домбай</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
                 </li>
                 <li class="elements__list-item">
                     <article class="element">
-                        <img src="img/element-img6.png" alt="фото публикация" class="element__img">
+                        <img src="images/element-img6.png" alt="публикация" class="element__img">
 
                         <div class="element__caption">
-                            <p class="element__text">Карачаево-Черкесово</p>
-                            <span class="element__like"></span>
+                            <h2 class="element__text">Карачаево-Черкесово</h2>
+                            <button type="button" class="element__like hover"></button>
                         </div>
 
                     </article>
@@ -130,7 +113,23 @@
     <footer class="footer">
         <p class="footer__text">&copy; 2022. Ivan Teteruk & Yandex.Praktikum</p>
     </footer>
-    <script src="script.js"></script>
+    <!-- Попап -->
+    <div class="popup">
+        <div class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+
+            <form class="popup__form">
+                <input name="login" class="popup__input popup__input_name">
+                <input name="description" class="popup__input popup__input_description">
+                <input type="submit" value="Сохранить" class="popup__save-form hover">
+            </form>
+
+
+            <button type="button" class="popup__close-btn hover"></button>
+        </div>
+    </div>
+
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>
