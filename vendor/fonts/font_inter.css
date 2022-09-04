@@ -3,19 +3,19 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../../fonts/inter_woff-woff2/Inter-Regular.woff2?v=3.19") format("woff2");
+    src: url("inter_woff2/Inter-Regular.woff2?v=3.19") format("woff2");
 }
 @font-face {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url("../../fonts/inter_woff-woff2/Inter-Medium.woff2?v=3.19") format("woff2");
+    src: url("inter_woff2/Inter-Medium.woff2?v=3.19") format("woff2");
 }
 @font-face {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
     font-display: swap;
-    src: url("../../fonts/inter_woff-woff2/Inter-Black.woff2?v=3.19") format("woff2");
+    src: url("inter_woff2/Inter-Black.woff2?v=3.19") format("woff2");
 }

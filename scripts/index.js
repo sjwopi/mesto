@@ -7,8 +7,8 @@ let lastDescription = content.querySelector('.profile__description');
 let popUp = document.querySelector('.popup');
 let closeButton = popUp.querySelector('.popup__close-btn');
 let formElement = popUp.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__input_name');
-let jobInput = formElement.querySelector('.popup__input_description');
+let nameInput = formElement.querySelector('.popup__input_type_name');
+let jobInput = formElement.querySelector('.popup__input_type_description');
 
 
 function openPopUp() {

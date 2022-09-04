@@ -4,10 +4,7 @@
     cursor: pointer;
     width: 22px;
     height: 19px;
-    position: absolute;
-    right: 20px;
-    bottom: 30px;
-    background: url("../../../images/like.png") center/cover no-repeat;
+    background: url("../../../images/like.svg") center/cover no-repeat;
     transition: all .3s;
 }
 .element__like:hover {
