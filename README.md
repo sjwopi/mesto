@@ -1,4 +1,4 @@
-https://sjwopi.github.io/mesto/
+
 # Проект: MESTO
 
 ### Обзор
