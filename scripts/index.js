@@ -22,13 +22,47 @@ function formSubmitHandler (evt) {
     lastDescription.textContent = jobInput.value;;
     openPopUp();
 }
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+let card = document.querySelector('#card').content;
+let elementsList = document.querySelector('.elements__list');
+
+function addPhoto(name, link) {
+    let cardItem = card.querySelector('.elements__list-item').cloneNode(true);
+
+    cardItem.querySelector('.element__img').src = link;
+    cardItem.querySelector('.element__text').textContent = name;
+
+    elementsList.append(cardItem);
+}
+for (let i = 0; i < initialCards.length; i++) {
+    addPhoto(initialCards[i].name, initialCards[i].link);
+}
 
 editButton.addEventListener('click', openPopUp);
 closeButton.addEventListener('click', openPopUp);
 formElement.addEventListener('submit', formSubmitHandler);
-
-/* let like = content.querySelector(".element__like");
-function likeActivation(id) {
-    id.classList.toggle("element__like_active");
-}
-like.addEventListener("click", likeActivation(like.gitElementById)); */
