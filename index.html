@@ -45,19 +45,35 @@
     <footer class="footer">
         <p class="footer__text">&copy; 2022. Ivan Teteruk & Yandex.Praktikum</p>
     </footer>
-    <!-- Попап -->
-    <div class="popup">
+    <!-- Попап Редактирования профиля-->
+    <div class="popup popup-edit">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <form name="edit-form" class="popup__form">
-                <input name="login" class="popup__input popup__input_type_name">
-                <input name="description" class="popup__input popup__input_type_description">
-                <input name="save-button" type="submit" value="Сохранить" class="popup__save-form">
+            <form name="edit-form" class="popup__for popup-edit__form">
+                <input name="login" class="popup__input popup-edit__input_type_name">
+                <input name="description" class="popup__input popup-edit__input_type_description">
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-form popup-edit__save-form">
             </form>
 
 
-            <button type="button" class="popup__close-btn"></button>
+            <button type="button" class="popup__close-btn popup-edit__close-btn"></button>
+        </div>
+    </div>
+
+    <!-- Попап Добавления картинки-->
+    <div class="popup popup-add">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+
+            <form name="edit-form" class="popup__for popup-add__form">
+                <input name="name" placeholder="Название" class="popup__input popup-add__input_type_name">
+                <input name="link" placeholder="Ссылка на картинку" class="popup__input popup-add__input_type_link">
+                <input name="save-button" type="submit" value="Создать" class="popup__save-form popup-add__save-form">
+            </form>
+
+
+            <button type="button" class="popup__close-btn popup-add__close-btn"></button>
         </div>
     </div>
     <template id="card">
