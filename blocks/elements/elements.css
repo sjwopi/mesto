@@ -5,12 +5,12 @@
 }
 @media screen and (max-width: 1024px) {
     .elements {
-        max-width: 100%;
-        margin: 0 48px 48px 48px;
+        max-width: calc(100vw - 96px);
+        margin: 0 auto 48px auto;
     }
 }
 @media screen and (max-width: 550px) {
     .elements {
-        margin: 0 19px 48px 19px;
+        max-width: calc(100vw - 38px);
     }
 }
