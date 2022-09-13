@@ -20,7 +20,7 @@ const card = document.querySelector('#card').content;
 const elementsList = document.querySelector('.elements__list');
 
 
-const initialCards = [
+let initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -46,42 +46,73 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-function addPhoto(name, link) {
-  let cardItem = card.querySelector('.elements__list-item').cloneNode(true);
-  cardItem.querySelector('.element__img').src = link;
-  cardItem.querySelector('.element__text').textContent = name;
-  elementsList.prepend(cardItem);
-  const likeButton = elementsList.querySelector('.element__like');
-  likeButton.addEventListener('click', likeActivation);
+
+function likeActivation(evt) {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle('element__like_active');
 }
 
+
+/* Открытие и закрытие попапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopUpEdit() {
   nameInputEdit.value = lastName.textContent;
   jobInputEdit.value = lastDescription.textContent;
   popUpEdit.classList.toggle('popup_opened');
 }
+
+/* Изенение информации в профиле */
 function formSubmitEdit(evt) {
   evt.preventDefault();
   lastName.textContent = nameInputEdit.value;
   lastDescription.textContent = jobInputEdit.value;
   openPopUpEdit();
-}
+}  
 
+/* Открытие и закрытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
 function openPopUpAdd() {
   nameInputAdd.value = '';
   linkInputAdd.value = '';
   popUpAdd.classList.toggle('popup_opened');
 }
+
+/* Добавление публикации в массив */
 function formSubmitAdd(evt) {
   evt.preventDefault();
   initialCards.push({ name: nameInputAdd.value, link: linkInputAdd.value });
-  addPhoto(nameInputAdd.value, linkInputAdd.value)
+  addPhoto();
   openPopUpAdd();
 }
-function likeActivation(evt) {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle('element__like_active');
+/* Добавление публикации на сайт */
+function addPhoto() {
+  while (elementsList.firstChild) {
+    elementsList.removeChild(elementsList.lastChild);
+  }
+  for (let i = initialCards.length - 1; i >= 0; i--) {
+    let cardItem = card.querySelector('.elements__list-item').cloneNode(true);
+    cardItem.querySelector('.element__text').textContent = initialCards[i].name;
+    cardItem.querySelector('.element__img').src = initialCards[i].link;
+    elementsList.append(cardItem);
+    /* Считыватели событий на кнопках лайка и удаления */
+    const likeButton = cardItem.querySelector('.element__like');
+    likeButton.addEventListener('click', likeActivation);
+    const deleteButton = cardItem.querySelector('.element__delete-btn');
+    deleteButton.addEventListener('click', deletePhoto);
+  }
 }
+
+/* Удаление публикации */
+function deletePhoto (evt) {
+  evt.preventDefault();
+  /* Из массива */
+  let elementTarget = evt.target.parentElement;
+  initialCards = initialCards.filter(function(item){
+    return item.link !== elementTarget.querySelector('.element__img').src;
+  });
+  
+  /* Из профиля */
+  addPhoto();
+}
+
 
 editButton.addEventListener('click', openPopUpEdit);
 closeButtonEdit.addEventListener('click', openPopUpEdit);
@@ -91,6 +122,4 @@ addButton.addEventListener('click', openPopUpAdd);
 closeButtonAdd.addEventListener('click', openPopUpAdd);
 formElementAdd.addEventListener('submit', formSubmitAdd);
 
-for (let i = initialCards.length - 1; i >= 0; i--) {
-  addPhoto(initialCards[i].name, initialCards[i].link);
-}
+addPhoto();
