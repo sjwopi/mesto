@@ -51,8 +51,8 @@
             <h2 class="popup__title">Редактировать профиль</h2>
 
             <form name="edit-form" class="popup__for popup-edit__form">
-                <input name="login" class="popup__input popup-edit__input-name"><!-- Почему тесты яндекса не пропустили класс "popup__input popup__input_type_name" -->
-                <input name="description" class="popup__input popup-edit__input-description"><!-- И здесь я присваивал класс по другому -->
+                <input name="login" placeholder="Имя" class="popup__input popup-edit__input-name"><!-- Почему тесты яндекса не пропустили класс "popup__input popup__input_type_name" -->
+                <input name="description" placeholder="Вид деятельности" class="popup__input popup-edit__input-description"><!-- И здесь я присваивал класс по другому -->
                 <input name="save-button" type="submit" value="Сохранить"
                     class="popup__save-form popup-edit__save-form">
             </form>
@@ -81,7 +81,7 @@
     <div class="popup popup-card">
         <div class="popup-card__container">
             <h2 class="popup-card__text"></h2>
-            <img src="#" alt="публикация" class="popup-card__img">
+            <img src="#" alt="#" class="popup-card__img">
             <button type="button" class="popup-card__close-btn"></button>
         </div>
     </div>
@@ -98,6 +98,7 @@
             </article>
         </li>
     </template>
+    <script src="scripts/constans.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 

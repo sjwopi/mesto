@@ -16,51 +16,29 @@ const formElementAdd = popUpAdd.querySelector('.popup-add__form');
 const nameInputAdd = formElementAdd.querySelector('.popup-add__input-name');
 const linkInputAdd = formElementAdd.querySelector('.popup-add__input-link');
 
-const popUpOpenPhoto = document.querySelector('.popup-card');
-const popUpOpenPhotoClose = popUpOpenPhoto.querySelector('.popup-card__close-btn');
+const popUpPhoto = document.querySelector('.popup-card');
+const popUpPhotoCloseBtn = popUpPhoto.querySelector('.popup-card__close-btn');
 
-const card = document.querySelector('#card').content;
+const cardTemplate = document.querySelector('#card').content;
 const elementsList = document.querySelector('.elements__list');
 
 
-let initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-function likeActivation(evt) {
+function activateLike(evt) {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like_active');
 }
 
-
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
 /* Открытие и закрытие попапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopUpEdit() {
   nameInputEdit.value = lastName.textContent;
   jobInputEdit.value = lastDescription.textContent;
-  popUpEdit.classList.toggle('popup_opened');
+  openPopup(popUpEdit);
 }
 
 /* Изенение информации в профиле */
@@ -68,75 +46,75 @@ function formSubmitEdit(evt) {
   evt.preventDefault();
   lastName.textContent = nameInputEdit.value;
   lastDescription.textContent = jobInputEdit.value;
-  openPopUpEdit();
-}  
+  closePopup(popUpEdit);
+}
 
 /* Открытие и закрытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
 function openPopUpAdd() {
   nameInputAdd.value = '';
   linkInputAdd.value = '';
-  popUpAdd.classList.toggle('popup_opened');
+  openPopup(popUpAdd);
 }
 
-/* Добавление публикации в массив */
-function formSubmitAdd(evt) {
-  evt.preventDefault();
-  initialCards.push({ name: nameInputAdd.value, link: linkInputAdd.value });
-  addPhoto();
-  openPopUpAdd();
+/* Считывалка событий на кнопках лайка и удаления */
+function checkEvent(cardItem) {
+  cardItem.querySelector('.element__img').addEventListener('click', openPhoto);
+
+  const likeButton = cardItem.querySelector('.element__like');
+  likeButton.addEventListener('click', activateLike);
+
+  const deleteButton = cardItem.querySelector('.element__delete-btn');
+  deleteButton.addEventListener('click', deletePhoto);
+}
+/* Создание карточки */
+function createCard(name, link) {
+  const card = cardTemplate.querySelector('.elements__list-item').cloneNode(true);
+  card.querySelector('.element__text').textContent = name;
+  card.querySelector('.element__img').src = link;
+  checkEvent(card);
+  return card;
 }
 /* Добавление публикации на сайт */
-function addPhoto() {
-  while (elementsList.firstChild) {
-    elementsList.removeChild(elementsList.lastChild);
-  }
-  for (let i = initialCards.length - 1; i >= 0; i--) {
-    let cardItem = card.querySelector('.elements__list-item').cloneNode(true);
-    cardItem.querySelector('.element__text').textContent = initialCards[i].name;
-    cardItem.querySelector('.element__img').src = initialCards[i].link;
-    elementsList.append(cardItem);
-
-    cardItem.querySelector('.element__img').addEventListener('click', openPhoto);
-
-    /* Считыватели событий на кнопках лайка и удаления */
-    const likeButton = cardItem.querySelector('.element__like');
-    likeButton.addEventListener('click', likeActivation);
-    const deleteButton = cardItem.querySelector('.element__delete-btn');
-    deleteButton.addEventListener('click', deletePhoto);
-  }
+function addNewPhoto() {
+  const cardItem = createCard(nameInputAdd.value, linkInputAdd.value);
+  elementsList.prepend(cardItem);
 }
+/* Отправка публикации*/
+function formSubmitAdd(evt) {
+  evt.preventDefault();
+  addNewPhoto();
+  closePopup(popUpAdd);
+}
+/* Открытие публикации */
 function openPhoto(evt) {
   evt.preventDefault();
-  popUpOpenPhoto.classList.toggle('popup_opened');
-  
-  if (popUpOpenPhoto.classList.contains('popup_opened')) {
-    popUpOpenPhoto.querySelector('.popup-card__text').textContent = evt.target.parentElement.querySelector('.element__text').textContent;
-    popUpOpenPhoto.querySelector('.popup-card__img').src = evt.target.src;
+  openPopup(popUpPhoto);
+
+  if (popUpPhoto.classList.contains('popup_opened')) {
+    popUpPhoto.querySelector('.popup-card__text').textContent = evt.target.parentElement.querySelector('.element__text').textContent;
+    popUpPhoto.querySelector('.popup-card__img').src = evt.target.src;
+    popUpPhoto.querySelector('.popup-card__img').alt = evt.target.parentElement.querySelector('.element__text').textContent;
   }
 }
 /* Удаление публикации */
-function deletePhoto (evt) {
+function deletePhoto(evt) {
   evt.preventDefault();
-  /* Из массива */
-  let elementTarget = evt.target.parentElement;
-  initialCards = initialCards.filter(function(item){
-
-    return ((item.link !== elementTarget.querySelector('.element__img').src) || (item.name !== elementTarget.querySelector('.element__text').textContent));
-  });
-  
-  /* Из профиля */
-  addPhoto();
+  let elementTarget = evt.target.closest('.elements__list-item');
+  elementTarget.remove();
 }
 
 
 editButton.addEventListener('click', openPopUpEdit);
-closeButtonEdit.addEventListener('click', openPopUpEdit);
+closeButtonEdit.addEventListener('click', function() { closePopup(popUpEdit); });
 formElementEdit.addEventListener('submit', formSubmitEdit);
 
 addButton.addEventListener('click', openPopUpAdd);
-closeButtonAdd.addEventListener('click', openPopUpAdd);
+closeButtonAdd.addEventListener('click', () => { closePopup(popUpAdd); });
 formElementAdd.addEventListener('submit', formSubmitAdd);
 
-popUpOpenPhotoClose.addEventListener('click', openPhoto)
+popUpPhotoCloseBtn.addEventListener('click', () => { closePopup(popUpPhoto); });
 
-addPhoto();
+for (let i = initialCards.length - 1; i >= 0; i--) {
+  const cardItem = createCard(initialCards[i].name, initialCards[i].link);
+  elementsList.append(cardItem);
+}
