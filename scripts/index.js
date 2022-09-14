@@ -16,6 +16,9 @@ const formElementAdd = popUpAdd.querySelector('.popup-add__form');
 const nameInputAdd = formElementAdd.querySelector('.popup-add__input_type_name');
 const linkInputAdd = formElementAdd.querySelector('.popup-add__input_type_link');
 
+const popUpOpenPhoto = document.querySelector('.popup-card');
+const popUpOpenPhotoClose = popUpOpenPhoto.querySelector('.popup-card__close-btn');
+
 const card = document.querySelector('#card').content;
 const elementsList = document.querySelector('.elements__list');
 
@@ -92,6 +95,9 @@ function addPhoto() {
     cardItem.querySelector('.element__text').textContent = initialCards[i].name;
     cardItem.querySelector('.element__img').src = initialCards[i].link;
     elementsList.append(cardItem);
+
+    cardItem.querySelector('.element__img').addEventListener('click', openPhoto);
+
     /* Считыватели событий на кнопках лайка и удаления */
     const likeButton = cardItem.querySelector('.element__like');
     likeButton.addEventListener('click', likeActivation);
@@ -99,7 +105,15 @@ function addPhoto() {
     deleteButton.addEventListener('click', deletePhoto);
   }
 }
-
+function openPhoto(evt) {
+  evt.preventDefault();
+  popUpOpenPhoto.classList.toggle('popup_opened');
+  
+  if (popUpOpenPhoto.classList.contains('popup_opened')) {
+    popUpOpenPhoto.querySelector('.popup-card__text').textContent = evt.target.parentElement.querySelector('.element__text').textContent;
+    popUpOpenPhoto.querySelector('.popup-card__img').src = evt.target.src;
+  }
+}
 /* Удаление публикации */
 function deletePhoto (evt) {
   evt.preventDefault();
@@ -121,5 +135,7 @@ formElementEdit.addEventListener('submit', formSubmitEdit);
 addButton.addEventListener('click', openPopUpAdd);
 closeButtonAdd.addEventListener('click', openPopUpAdd);
 formElementAdd.addEventListener('submit', formSubmitAdd);
+
+popUpOpenPhotoClose.addEventListener('click', openPhoto)
 
 addPhoto();

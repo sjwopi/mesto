@@ -1,0 +1,18 @@
+.popup-card__close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    padding: 0;
+    background: url("../../../images/close-icon.svg") center/contain no-repeat;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+}
+@media screen and (max-width: 900px){
+    .popup-card__close-btn {
+        width: 24px;
+        height: 24px;
+        top: -30px;
+        right: -30px;
+    }
+}

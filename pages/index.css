@@ -39,5 +39,10 @@
 @import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__delete-btn/element__delete-btn.css);
 
+@import url(../blocks/popup-card/popup-card.css);
+@import url(../blocks/popup-card/__img/popup-card__img.css);
+@import url(../blocks/popup-card/__text/popup-card__text.css);
+@import url(../blocks/popup-card/__close-btn/popup-card__close-btn.css);
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
