@@ -7,14 +7,14 @@ const lastDescription = content.querySelector('.profile__description');
 const popUpEdit = document.querySelector('.popup-edit');
 const closeButtonEdit = popUpEdit.querySelector('.popup-edit__close-btn');
 const formElementEdit = popUpEdit.querySelector('.popup-edit__form');
-const nameInputEdit = formElementEdit.querySelector('.popup-edit__input_name');
-const jobInputEdit = formElementEdit.querySelector('.popup-edit__input_description');
+const nameInputEdit = formElementEdit.querySelector('.popup-edit__input-name');
+const jobInputEdit = formElementEdit.querySelector('.popup-edit__input-description');
 
 const popUpAdd = document.querySelector('.popup-add');
 const closeButtonAdd = popUpAdd.querySelector('.popup-add__close-btn');
 const formElementAdd = popUpAdd.querySelector('.popup-add__form');
-const nameInputAdd = formElementAdd.querySelector('.popup-add__input_name');
-const linkInputAdd = formElementAdd.querySelector('.popup-add__input_link');
+const nameInputAdd = formElementAdd.querySelector('.popup-add__input-name');
+const linkInputAdd = formElementAdd.querySelector('.popup-add__input-link');
 
 const popUpOpenPhoto = document.querySelector('.popup-card');
 const popUpOpenPhotoClose = popUpOpenPhoto.querySelector('.popup-card__close-btn');
