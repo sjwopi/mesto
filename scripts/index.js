@@ -5,6 +5,7 @@ const lastName = content.querySelector('.profile__full-name');
 const lastDescription = content.querySelector('.profile__description');
 
 const popupEditProfile = document.querySelector('.popup-edit');
+popupEditProfile.classList.add('popup_opened')
 const popupContainerEdit = popupEditProfile.querySelector('.popup__container');
 const closeButtonEdit = popupEditProfile.querySelector('.popup-edit__close-btn');
 const formElementEdit = popupEditProfile.querySelector('.popup-edit__form');
@@ -29,7 +30,7 @@ function activateLike(evt) {
   eventTarget.classList.toggle('element__like_active');
 }
 function eventEscape(popup) {
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', function (evt) {
     if (evt.key === 'Escape') {
       closePopup(popup)
     }
@@ -89,14 +90,6 @@ function submitAddCardForm(evt) {
   evt.preventDefault();
   addNewPhoto();
   closePopup(popupAddCard);
-  console.log(evt.target.classList.contains('popup__save-form_disabled'), evt.target)
-  /* () => {
-  console.log(formElementAdd.classList.contains('popup__save-form_disabled'))
-  if (formElementAdd.querySelector('.popup-add__save-form').classList.contains('popup__save-form_disabled')) {
-    closePopup(popupAddCard); 
-  }
-}); */
-
 }
 /* Открытие публикации */
 function openPhoto(evt) {
@@ -114,12 +107,69 @@ function deletePhoto(evt) {
   let elementTarget = evt.target.closest('.elements__list-item');
   elementTarget.remove();
 }
-function checkValidForm() {
-  
-}
+/* Проверка валидности инпутов */
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+/* Изменение состояния кнопки отправки формы */
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__save-form_disabled');
+  } else {
+    buttonElement.classList.remove('popup__save-form_disabled');
+  }
+};
+/* Спаны с ошибкой */
+const showInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__input_invalid');
+  if (inputElement.name === 'url') {errorElement.textContent = 'Введите адрес сайта.';}
+  else {errorElement.textContent = 'Вы пропустили это поле.';}
+};
+
+const hideInputError = (formElement, inputElement) => {
+  console.log(`.${inputElement.id}-error`)
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input_invalid');
+  errorElement.textContent = '';
+};
+/* Проверка валидности инпутов + вызовы ошибок*/
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__save-form');
+  toggleButtonState(inputList, buttonElement);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+};
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();
+
 
 editButton.addEventListener('click', openPopupEditProfile);
-closeButtonEdit.addEventListener('click', function () { closePopup(popupEditProfile); });
+closeButtonEdit.addEventListener('click', () => { closePopup(popupEditProfile); });
 formElementEdit.addEventListener('submit', submitEditProfileForm);
 
 addButton.addEventListener('click', openPopupAddCard);

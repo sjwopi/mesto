@@ -2,7 +2,7 @@
   width: calc(100% - 24px);
   height: 27px;
   padding: 5px 12px;
-  margin: 0 0 30px 0;
+  margin: 0 0 5px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
@@ -21,4 +21,17 @@
 
 .popup__input_invalid {
   border-bottom: 1px solid rgba(255, 0, 0, 1);
+}
+.form__input-error {
+  display: block;
+  margin: 0;
+  padding: 0 12px;
+  font-size: 12px;
+  color: red;
+  line-height: 15px;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+}
+.form__input-error_active {
+  display: block
 }

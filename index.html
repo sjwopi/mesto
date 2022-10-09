@@ -50,27 +50,36 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <form name="edit-form" class="popup__form popup-edit__form">
-                <input name="login" placeholder="Имя" class="popup__input popup-edit__input-name">
-                <input name="description" placeholder="Вид деятельности" class="popup__input popup-edit__input-description">
+            <form name="edit-form" class="form popup__form popup-edit__form">
+              
+                <input id="login" name="login" placeholder="Имя" class="popup__input popup-edit__input-name" required minlength="2" maxlength="40">
+                <span class="form__input-error login-error"></span>
+
+                <input id="description" name="description" placeholder="Вид деятельности" class="popup__input popup-edit__input-description" minlength="2" maxlength="200">
+                <span class="form__input-error description-error"></span>
+
                 <input name="save-button" type="submit" value="Сохранить"
-                    class="popup__save-form popup-edit__save-form popup__save-form_disabled">
+                    class="popup__save-form popup-edit__save-form">
             </form>
 
 
             <button type="button" class="popup__close-btn popup-edit__close-btn"></button>
         </div>
     </div>
-
     <!-- Попап Добавления картинки-->
     <div class="popup popup-add">
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
 
-            <form name="edit-form" class="popup__for popup-add__form">
-                <input name="name" placeholder="Название" class="popup__input popup-add__input-name popup__input_invalid">
-                <input name="link" placeholder="Ссылка на картинку" class="popup__input popup-add__input-link popup__input_invalid">
-                <input name="save-button" type="submit" value="Создать" class="popup__save-form popup__save-form_disabled popup-add__save-form">
+            <form name="edit-form" class="form popup__form popup-add__form">
+
+                <input id="name" name="name" placeholder="Название" class="popup__input popup-add__input-name" required minlength="2" maxlength="30">
+                <span class="form__input-error name-error"></span>
+
+                <input id="url" type="url" name="url" placeholder="Ссылка на картинку" class="popup__input popup-add__input-link">
+                <span class="form__input-error url-error"></span>
+
+                <input name="save-button" type="submit" value="Создать" class="popup__save-form popup-add__save-form">
             </form>
 
 
