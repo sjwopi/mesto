@@ -24,14 +24,10 @@
 }
 .form__input-error {
   display: block;
-  margin: 0;
   padding: 0 12px;
   font-size: 12px;
   color: red;
   line-height: 15px;
   font-weight: 400;
   margin: 0 0 15px 0;
-}
-.form__input-error_active {
-  display: block
 }
