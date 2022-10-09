@@ -5,7 +5,6 @@ const lastName = content.querySelector('.profile__full-name');
 const lastDescription = content.querySelector('.profile__description');
 
 const popupEditProfile = document.querySelector('.popup-edit');
-popupEditProfile.classList.add('popup_opened')
 const popupContainerEdit = popupEditProfile.querySelector('.popup__container');
 const closeButtonEdit = popupEditProfile.querySelector('.popup-edit__close-btn');
 const formElementEdit = popupEditProfile.querySelector('.popup-edit__form');
