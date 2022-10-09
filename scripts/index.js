@@ -37,10 +37,16 @@ function eventEscape(popup) {
 }
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  let form = popup.querySelector('.form')
+  let inputErrorList = Array.from(popup.querySelectorAll('.popup__input'));
+  inputErrorList.forEach((item) => {
+    checkInputValidity(form, item)
+  })
   eventEscape(popup)
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  let inputErrorList = Array.from(popup.querySelectorAll('.form__input-error'));
 }
 /* Открытие и закрытие попапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopupEditProfile() {
