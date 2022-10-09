@@ -50,11 +50,11 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <form name="edit-form" class="popup__for popup-edit__form">
-                <input name="login" placeholder="Имя" class="popup__input popup-edit__input-name"><!-- Почему тесты яндекса не пропустили класс "popup__input popup__input_type_name" -->
-                <input name="description" placeholder="Вид деятельности" class="popup__input popup-edit__input-description"><!-- И здесь я присваивал класс по другому -->
+            <form name="edit-form" class="popup__form popup-edit__form">
+                <input name="login" placeholder="Имя" class="popup__input popup-edit__input-name">
+                <input name="description" placeholder="Вид деятельности" class="popup__input popup-edit__input-description">
                 <input name="save-button" type="submit" value="Сохранить"
-                    class="popup__save-form popup-edit__save-form">
+                    class="popup__save-form popup-edit__save-form popup__save-form_disabled">
             </form>
 
 
@@ -68,9 +68,9 @@
             <h2 class="popup__title">Новое место</h2>
 
             <form name="edit-form" class="popup__for popup-add__form">
-                <input name="name" placeholder="Название" class="popup__input popup-add__input-name"><!-- И здесь я присваивал класс по другому -->
-                <input name="link" placeholder="Ссылка на картинку" class="popup__input popup-add__input-link"><!-- И здесь я присваивал класс по другому -->
-                <input name="save-button" type="submit" value="Создать" class="popup__save-form popup-add__save-form">
+                <input name="name" placeholder="Название" class="popup__input popup-add__input-name popup__input_invalid">
+                <input name="link" placeholder="Ссылка на картинку" class="popup__input popup-add__input-link popup__input_invalid">
+                <input name="save-button" type="submit" value="Создать" class="popup__save-form popup__save-form_disabled popup-add__save-form">
             </form>
 
 

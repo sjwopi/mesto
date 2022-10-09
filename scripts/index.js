@@ -24,24 +24,20 @@ const popupPhotoCloseBtn = popupPhoto.querySelector('.popup-card__close-btn');
 const cardTemplate = document.querySelector('#card').content;
 const elementsList = document.querySelector('.elements__list');
 
-/* Закрытие попапа по нажатию вне его границах */
-const popupArray = Array.from(document.querySelectorAll('.popup'))
-popupArray.forEach(function (popup) {
-  popup.addEventListener('click', function (evt) {
-    item = evt.target;
-    closePopup(item)
-  });
-  document.addEventListener('keydown', function(evt) {
-    if (evt.key = 'Escape') {closePopup(popup)}
-  })
-});
-
 function activateLike(evt) {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like_active');
 }
+function eventEscape(popup) {
+  document.addEventListener('keydown', function(evt) {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    }
+  })
+}
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  eventEscape(popup)
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -61,8 +57,6 @@ function submitEditProfileForm(evt) {
 }
 /* Открытие и закрытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
 function openPopupAddCard() {
-  nameInputAdd.value = '';
-  linkInputAdd.value = '';
   openPopup(popupAddCard);
 }
 /* Считывалка событий на кнопках лайка и удаления */
@@ -95,6 +89,14 @@ function submitAddCardForm(evt) {
   evt.preventDefault();
   addNewPhoto();
   closePopup(popupAddCard);
+  console.log(evt.target.classList.contains('popup__save-form_disabled'), evt.target)
+  /* () => {
+  console.log(formElementAdd.classList.contains('popup__save-form_disabled'))
+  if (formElementAdd.querySelector('.popup-add__save-form').classList.contains('popup__save-form_disabled')) {
+    closePopup(popupAddCard); 
+  }
+}); */
+
 }
 /* Открытие публикации */
 function openPhoto(evt) {
@@ -112,6 +114,9 @@ function deletePhoto(evt) {
   let elementTarget = evt.target.closest('.elements__list-item');
   elementTarget.remove();
 }
+function checkValidForm() {
+  
+}
 
 editButton.addEventListener('click', openPopupEditProfile);
 closeButtonEdit.addEventListener('click', function () { closePopup(popupEditProfile); });
@@ -126,6 +131,11 @@ initialCards.forEach(function (item) {
   const cardItem = createCard(item.name, item.link);
   elementsList.append(cardItem);
 });
-
-
+/* Закрытие попапа по нажатию вне его границах */
+const popupArray = Array.from(document.querySelectorAll('.popup'))
+popupArray.forEach(function (popup) {
+  popup.addEventListener('click', function (evt) {
+    closePopup(evt.target)
+  });
+})
 
