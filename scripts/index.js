@@ -41,15 +41,9 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', setListenerForPopupCloseByEsc);
-  if (popup.classList.contains('popup-add')) {
-    nameInputAdd.value = '';
-    linkInputAdd.value = '';
-    resetValidationErrors(popup);
-  } else if (popup.classList.contains('popup-edit')) {
-    resetValidationErrors(popup);
-  }
+  resetValidationErrors(popup);
 }
-/* Открытие и закрытие попапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
+/* Открытиепопапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopupEditProfile() {
   nameInputEdit.value = lastName.textContent;
   jobInputEdit.value = lastDescription.textContent;
@@ -61,9 +55,10 @@ function submitEditProfileForm() {
   lastDescription.textContent = jobInputEdit.value;
   closePopup(popupEditProfile);
 }
-/* Открытие и закрытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
+/* Открытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
 function openPopupAddCard() {
   openPopup(popupAddCard);
+  popupAddCard.querySelector('.popup__form').reset();
 }
 /* Считывалка событий на кнопках лайка и удаления */
 function setCardEventListeners(cardItem) {
