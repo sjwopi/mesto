@@ -28,25 +28,26 @@ function activateLike(evt) {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like_active');
 }
-function eventEscape(popup) {
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-    }
-  })
+function setListenerForPopupCloseByEsc(evt) {
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(activePopup)
+  }
 }
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  let form = popup.querySelector('.form')
-  let inputErrorList = Array.from(popup.querySelectorAll('.popup__input'));
-  inputErrorList.forEach((item) => {
-    checkInputValidity(form, item)
-  })
-  eventEscape(popup)
+  document.addEventListener('keydown', setListenerForPopupCloseByEsc);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  let inputErrorList = Array.from(popup.querySelectorAll('.form__input-error'));
+  document.removeEventListener('keydown', setListenerForPopupCloseByEsc);
+  if (popup.classList.contains('popup-add')) {
+    nameInputAdd.value = '';
+    linkInputAdd.value = '';
+    resetValidationErrors(popup);
+  } else if (popup.classList.contains('popup-edit')) {
+    resetValidationErrors(popup);
+  }
 }
 /* Открытие и закрытие попапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopupEditProfile() {
@@ -55,8 +56,7 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
 }
 /* Изенение информации в профиле */
-function submitEditProfileForm(evt) {
-  evt.preventDefault();
+function submitEditProfileForm() {
   lastName.textContent = nameInputEdit.value;
   lastDescription.textContent = jobInputEdit.value;
   closePopup(popupEditProfile);
@@ -91,87 +91,27 @@ function addNewPhoto() {
   elementsList.prepend(cardItem);
 }
 /* Отправка публикации*/
-function submitAddCardForm(evt) {
-  evt.preventDefault();
+function submitAddCardForm() {
   addNewPhoto();
   closePopup(popupAddCard);
 }
+const popupPhotoImg = popupPhoto.querySelector('.popup-card__img');
+const cardText = popupPhoto.querySelector('.popup-card__text');
 /* Открытие публикации */
 function openPhoto(evt) {
   evt.preventDefault();
   openPopup(popupPhoto);
   const popupPhotoText = evt.target.parentElement.querySelector('.element__text').textContent;
-  const popupPhotoImg = popupPhoto.querySelector('.popup-card__img');
-  popupPhoto.querySelector('.popup-card__text').textContent = popupPhotoText;
+  cardText.textContent = popupPhotoText;
   popupPhotoImg.alt = popupPhotoText;
   popupPhotoImg.src = evt.target.src;
 }
 /* Удаление публикации */
 function deletePhoto(evt) {
   evt.preventDefault();
-  let elementTarget = evt.target.closest('.elements__list-item');
+  const elementTarget = evt.target.closest('.elements__list-item');
   elementTarget.remove();
 }
-/* Проверка валидности инпутов */
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-/* Изменение состояния кнопки отправки формы */
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__save-form_disabled');
-  } else {
-    buttonElement.classList.remove('popup__save-form_disabled');
-  }
-};
-/* Спаны с ошибкой */
-const showInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_invalid');
-  if (inputElement.name === 'url') {errorElement.textContent = 'Введите адрес сайта.';}
-  else {errorElement.textContent = 'Вы пропустили это поле.';}
-};
-
-const hideInputError = (formElement, inputElement) => {
-  console.log(`.${inputElement.id}-error`)
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_invalid');
-  errorElement.textContent = '';
-};
-/* Проверка валидности инпутов + вызовы ошибок*/
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__save-form');
-  toggleButtonState(inputList, buttonElement);
-
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-enableValidation();
-
 
 editButton.addEventListener('click', openPopupEditProfile);
 closeButtonEdit.addEventListener('click', () => { closePopup(popupEditProfile); });
@@ -187,8 +127,8 @@ initialCards.forEach(function (item) {
   elementsList.append(cardItem);
 });
 /* Закрытие попапа по нажатию вне его границах */
-const popupArray = Array.from(document.querySelectorAll('.popup'))
-popupArray.forEach(function (popup) {
+const popups = Array.from(document.querySelectorAll('.popup'))
+popups.forEach(function (popup) {
   popup.addEventListener('click', function (evt) {
     closePopup(evt.target)
   });

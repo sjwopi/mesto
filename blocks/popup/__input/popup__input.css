@@ -1,8 +1,8 @@
 .popup__input {
   width: calc(100% - 24px);
   height: 27px;
-  padding: 5px 12px;
-  margin: 0 0 5px 0;
+  padding: 4px 12px;
+  margin: 0 0 10px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
@@ -15,19 +15,25 @@
   border: 2px solid #6aafff;
   border-radius: 5px;
 }
-.popup__input:last-child {
-  margin: 0 0 48px 0;
-}
 
 .popup__input_invalid {
   border-bottom: 1px solid rgba(255, 0, 0, 1);
 }
 .form__input-error {
   display: block;
+  min-height: 40px;
   padding: 0 12px;
   font-size: 12px;
   color: red;
-  line-height: 15px;
+  line-height: 20px;
   font-weight: 400;
-  margin: 0 0 15px 0;
+}
+@media screen and (max-width: 600px) {
+  .popup__input {
+    margin: 0 0 6px 0;
+  }
+  .form__input-error {
+    padding: 0;
+    min-height: 60px;
+  }
 }
