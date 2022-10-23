@@ -1,3 +1,16 @@
+/* export default class FormValidator {
+  constructor(data, selectors) {
+    this._inputElement = true;
+  }
+  _hasInvalidInput() {
+    return this._inputList.some((this._inputElement) => {
+      return !inputElement.validity.valid;
+    });
+  }
+} */
+
+
+
 /* Проверка валидности инпутов */
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -46,15 +59,8 @@ const setEventListeners = (obj, formElement) => {
     });
   });
 };
-const resetValidationErrors = (popup) => {
-  const inputErrorList = Array.from(popup.querySelectorAll('.popup__input'));
-  inputErrorList.forEach((inputError) => {
-    inputError.classList.remove('popup__error_invalid');
-    popup.querySelector(`.${inputError.name}-error`).textContent = '';
-  })
-}
+
 const enableValidation = (obj) => {
-  console.log(obj.formSelector)
   const formList = Array.from(document.querySelectorAll(obj.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
@@ -63,7 +69,6 @@ const enableValidation = (obj) => {
     setEventListeners(obj, formElement);
   });
 };
-/* Если честно, мне кажется, я неправильно понял, что тут делать с обьектом, но ничего другого мне в голову не пришло */
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

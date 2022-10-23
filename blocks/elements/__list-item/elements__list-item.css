@@ -1,15 +1,16 @@
 .elements__list-item {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
-@media screen and (max-width: 750px) {
-    .elements__list-item {
-        margin: 0 0 20px 0;
-    }
 
-    .elements__list-item:last-child {
-        margin: 0;
-    }
+@media screen and (max-width: 750px) {
+  .elements__list-item {
+    margin: 0 0 20px 0;
+  }
+
+  .elements__list-item:last-child {
+    margin: 0;
+  }
 }

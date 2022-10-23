@@ -1,23 +1,25 @@
 .profile__description {
-    margin: 16px 0 0 0;
-    padding: 0;
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 400;
-    max-width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  margin: 16px 0 0 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 @media screen and (max-width: 934px) {
-    .profile__description {
-        margin: 14px auto 36px auto;
-    }
+  .profile__description {
+    margin: 14px auto 36px auto;
+  }
 }
+
 @media screen and (max-width: 500px) {
-    .profile__description {
-        max-width: 150px;
-        font-size: 14px;
-        line-height: 17px;
-    }
+  .profile__description {
+    max-width: 150px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
