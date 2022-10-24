@@ -1,11 +1,11 @@
-import {openPopupPhoto, closePopupPhoto} from './index.js'
+import { openPopupPhoto, closePopupPhoto } from './index.js'
 export default class Card {
-  constructor(data, template, selectors) {
+  constructor(data, template, selectorsCard) {
     this._name = data.name;
     this._link = data.link;
     this._isLiked = false;
     this._template = template;
-    this._selectors = selectors;
+    this._selectors = selectorsCard;
   }
   _getTemplate() {
     const cardElement = this._template.querySelector(this._selectors.card).cloneNode(true);
@@ -18,7 +18,7 @@ export default class Card {
     this._popupPhoto.querySelector(this._selectors.popupPhotoImg).src = this._link;
     this._popupPhoto.querySelector(this._selectors.popupPhotoText).textContent = this._name;
     this._popupPhoto.querySelector(this._selectors.popupPhotoCloseBtn).addEventListener('click', () => closePopupPhoto(this._popupPhoto));
-    
+
     return this._popupPhoto;
   }
   _createCard() {
@@ -30,7 +30,7 @@ export default class Card {
 
     this._buttonLike = this._element.querySelector(this._selectors.like);
     this._buttonDelete = this._element.querySelector(this._selectors.deleteBtn);
-    
+
     this._setCardEventListeners();
     return this._element;
   }
