@@ -84,7 +84,8 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
 }
 /* Изенение информации в профиле */
-function submitEditProfileForm() {
+function submitEditProfileForm(evt) {
+  evt.preventDefault();
   lastName.textContent = nameInputEdit.value;
   lastDescription.textContent = jobInputEdit.value;
   closePopup(popupEditProfile);
@@ -105,13 +106,17 @@ function addNewPhoto() {
   elementsList.prepend(cardItem);
 }
 /* Отправка публикации*/
-function submitAddCardForm() {
+function submitAddCardForm(evt) {
+  evt.preventDefault();
   addNewPhoto();
   closePopup(popupAddCard);
 }
 
 editButton.addEventListener('click', openPopupEditProfile);
-closeButtonEdit.addEventListener('click', () => { closePopup(popupEditProfile); });
+closeButtonEdit.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  closePopup(popupEditProfile);
+});
 formElementEdit.addEventListener('submit', submitEditProfileForm);
 
 addButton.addEventListener('click', openPopupAddCard);
@@ -125,15 +130,17 @@ initialCards.forEach(function (item) {
 
 popups.forEach(function (popup) {
   popup.addEventListener('click', function (evt) {
-    closePopup(evt.target)
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(evt.target)
+    }
   });
 })
-const enableValidation = (selectorsValidate) => {
+const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll(selectorsValidate.formSelector));
   formList.forEach((formElement) => {
-      const validator = new FormValidator(selectorsValidate, formElement);
-      validator.enableValidation();
+    const validator = new FormValidator(selectorsValidate, formElement);
+    validator.enableValidation();
   });
 };
-enableValidation(selectorsValidate);
+enableValidation();
 export { openPopupPhoto, closePopupPhoto }
