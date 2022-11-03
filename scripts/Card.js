@@ -1,4 +1,4 @@
-import { openPopupPhoto, closePopupPhoto } from './index.js'
+import { openPopup, closePopup } from './index.js'
 export default class Card {
   constructor(data, template, selectorsCard) {
     this._name = data.name;
@@ -17,7 +17,7 @@ export default class Card {
     this._popupPhoto = document.querySelector(this._selectors.popupPhoto);
     this._popupPhoto.querySelector(this._selectors.popupPhotoImg).src = this._link;
     this._popupPhoto.querySelector(this._selectors.popupPhotoText).textContent = this._name;
-    this._popupPhoto.querySelector(this._selectors.popupPhotoCloseBtn).addEventListener('click', () => closePopupPhoto(this._popupPhoto));
+    this._popupPhoto.querySelector(this._selectors.popupPhotoCloseBtn).addEventListener('click', () => closePopup(this._popupPhoto));
 
     return this._popupPhoto;
   }
@@ -34,6 +34,10 @@ export default class Card {
     this._setCardEventListeners();
     return this._element;
   }
+  _createPopup() {
+    const popup = this._generatePopupPhoto();
+    openPopup(popup);
+  }
   _activateLike() {
     this._buttonLike.classList.toggle('element__like_active');
   }
@@ -43,6 +47,6 @@ export default class Card {
   _setCardEventListeners() {
     this._buttonDelete.addEventListener('click', () => this._deletePhoto(this));
     this._buttonLike.addEventListener('click', () => this._activateLike(this));
-    this._element.querySelector(this._selectors.img).addEventListener('click', () => openPopupPhoto(this));
+    this._element.querySelector(this._selectors.img).addEventListener('click', () => this._createPopup(this));
   }
 }
