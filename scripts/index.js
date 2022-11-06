@@ -1,3 +1,4 @@
+import {initialCards} from './constans.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -54,18 +55,17 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', setListenerForPopupCloseByEsc);
-  validatorAdd.resetValidation();
-  validatorEdit.resetValidation();
 }
 
 function setListenerForPopupCloseByEsc(evt) {
-  const popupActive = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
   }
 }
 /* Открытиепопапа РЕДАКТИРОВАНИЯ ПРОФИЛЯ */
 function openPopupEditProfile() {
+  validatorEdit.resetError();
   nameInputEdit.value = lastName.textContent;
   jobInputEdit.value = lastDescription.textContent;
   openPopup(popupEditProfile);
@@ -79,11 +79,18 @@ function submitEditProfileForm(evt) {
 }
 /* Открытие попапа ДОБАВЛЕНИЯ ПУБЛИКАЦИИ*/
 function openPopupAddCard() {
+  validatorAdd.resetError();
   openPopup(popupAddCard);
 }
+/* Открытие публикации */
+function handleOpenImage(name, link) {
+  this._popupPhotoImg.src = link;
+  this._popupPhotoText.textContent = name;
+  openPopup(this._popupPhoto);
+}
 function createCard(data) {
-  const card = new Card(data, cardTemplate, selectorsCard);
-  const element = card._createCard();
+  const card = new Card(data, cardTemplate, selectorsCard, handleOpenImage);
+  const element = card.createCard();
   return element;
 }
 /* Добавление публикации на сайт */
@@ -111,6 +118,8 @@ addButton.addEventListener('click', openPopupAddCard);
 closeButtonAdd.addEventListener('click', () => { closePopup(popupAddCard); });
 formElementAdd.addEventListener('submit', submitAddCardForm);
 
+document.querySelector(selectorsCard.popupPhotoCloseBtn).addEventListener('click', () => closePopup(document.querySelector('.popup_opened')));
+
 initialCards.forEach(function (item) {
   const card = createCard(item);
   elementsList.append(card);
@@ -126,10 +135,8 @@ popups.forEach(function (popup) {
 
 const validatorAdd = new FormValidator(selectorsValidate, formAdd);
 validatorAdd.enableValidation();
-validatorAdd.resetValidation();
 const validatorEdit = new FormValidator(selectorsValidate, formEdit);
 validatorEdit.enableValidation();
-validatorEdit.resetValidation();
 
 
-export { openPopup, closePopup }
+export { openPopup }

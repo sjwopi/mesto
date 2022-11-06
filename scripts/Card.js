@@ -1,11 +1,13 @@
-import { openPopup, closePopup } from './index.js'
 export default class Card {
-  constructor(data, template, selectorsCard) {
+  constructor(data, template, selectorsCard, handleOpenImage) {
     this._name = data.name;
     this._link = data.link;
-    this._isLiked = false;
     this._template = template;
     this._selectors = selectorsCard;
+    this._popupPhoto = document.querySelector(this._selectors.popupPhoto);
+    this._popupPhotoImg = this._popupPhoto.querySelector(this._selectors.popupPhotoImg);
+    this._popupPhotoText = this._popupPhoto.querySelector(this._selectors.popupPhotoText)
+    this._handleOpenImage = handleOpenImage;
   }
   _getTemplate() {
     const cardElement = this._template.querySelector(this._selectors.card).cloneNode(true);
@@ -13,15 +15,18 @@ export default class Card {
     this._cardImage = cardElement.querySelector(this._selectors.img);
     return cardElement;
   }
-  _generatePopupPhoto() {
-    this._popupPhoto = document.querySelector(this._selectors.popupPhoto);
-    this._popupPhoto.querySelector(this._selectors.popupPhotoImg).src = this._link;
-    this._popupPhoto.querySelector(this._selectors.popupPhotoText).textContent = this._name;
-    this._popupPhoto.querySelector(this._selectors.popupPhotoCloseBtn).addEventListener('click', () => closePopup(this._popupPhoto));
-
-    return this._popupPhoto;
+  _activateLike() {
+    this._buttonLike.classList.toggle('element__like_active');
   }
-  _createCard() {
+  _deletePhoto() {
+    this._element.remove();
+  }
+  _setCardEventListeners() {
+    this._buttonDelete.addEventListener('click', () => this._deletePhoto());
+    this._buttonLike.addEventListener('click', () => this._activateLike());
+    this._element.querySelector(this._selectors.img).addEventListener('click', () => this._handleOpenImage(this._name, this._link));
+  }
+  createCard() {
     this._element = this._getTemplate();
 
     this._cardTitle.textContent = this._name;
@@ -33,20 +38,5 @@ export default class Card {
 
     this._setCardEventListeners();
     return this._element;
-  }
-  _createPopup() {
-    const popup = this._generatePopupPhoto();
-    openPopup(popup);
-  }
-  _activateLike() {
-    this._buttonLike.classList.toggle('element__like_active');
-  }
-  _deletePhoto() {
-    this._element.remove();
-  }
-  _setCardEventListeners() {
-    this._buttonDelete.addEventListener('click', () => this._deletePhoto(this));
-    this._buttonLike.addEventListener('click', () => this._activateLike(this));
-    this._element.querySelector(this._selectors.img).addEventListener('click', () => this._createPopup(this));
   }
 }

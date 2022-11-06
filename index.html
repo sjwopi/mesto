@@ -50,7 +50,7 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <form name="edit-form" class="form popup__form popup-edit__form">
+      <form name="edit-form" class="form popup__form popup-edit__form" novalidate>
 
         <input id="login" name="login" placeholder="Имя" class="popup__input popup-edit__input-name" required
           minlength="2" maxlength="40">
@@ -72,7 +72,7 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
 
-      <form name="edit-form" class="form popup__form popup-add__form">
+      <form name="edit-form" class="form popup__form popup-add__form" novalidate>
 
         <input id="name" name="name" placeholder="Название" class="popup__input popup-add__input-name" required
           minlength="2" maxlength="30">
@@ -110,7 +110,6 @@
       </article>
     </li>
   </template>
-  <script src="scripts/constans.js"></script>
   <script type="module" src="scripts/index.js"></script>
 </body>
 
