@@ -42,6 +42,10 @@ const nameInputAdd = formElementAdd.querySelector('.popup-add__input-name');
 const linkInputAdd = formElementAdd.querySelector('.popup-add__input-link');
 const formAdd = popupAddCard.querySelector('.popup__form');
 
+const popupPhoto = document.querySelector('.popup-card');
+const popupPhotoImg = popupPhoto.querySelector('.popup-card__img');
+const popupPhotoText = popupPhoto.querySelector('.popup-card__text');
+
 const cardTemplate = document.querySelector('#card').content;
 const elementsList = document.querySelector('.elements__list');
 
@@ -84,9 +88,9 @@ function openPopupAddCard() {
 }
 /* Открытие публикации */
 function handleOpenImage(name, link) {
-  this._popupPhotoImg.src = link;
-  this._popupPhotoText.textContent = name;
-  openPopup(this._popupPhoto);
+  popupPhotoImg.src = link;
+  popupPhotoText.textContent = name;
+  openPopup(popupPhoto);
 }
 function createCard(data) {
   const card = new Card(data, cardTemplate, selectorsCard, handleOpenImage);
@@ -137,6 +141,3 @@ const validatorAdd = new FormValidator(selectorsValidate, formAdd);
 validatorAdd.enableValidation();
 const validatorEdit = new FormValidator(selectorsValidate, formEdit);
 validatorEdit.enableValidation();
-
-
-export { openPopup }
