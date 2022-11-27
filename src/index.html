@@ -5,14 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Место</title>
 </head>
 
 <body class="root">
   <!-- Шапка сайта -->
   <header class="header">
-    <img src="images/logo.svg" alt="логотип" class="header__logo">
+    <img src="<%=require('../src/images/logo.svg')%>" alt="логотип" class="header__logo">
   </header>
 
   <main class="content">
@@ -21,7 +20,7 @@
 
       <div class="profile__info">
 
-        <img src="images/avatar.png" alt="аватарка" class="profile__avatar">
+        <img src="<%=require('../src/images/avatar.png')%>" alt="аватарка" class="profile__avatar">
 
         <div class="profile__text">
           <div class="profile__name-block">
@@ -52,9 +51,9 @@
 
       <form name="edit-form" class="form popup__form popup-edit__form" novalidate>
 
-        <input id="login" name="login" placeholder="Имя" class="popup__input popup-edit__input-name" required
+        <input id="username" name="username" placeholder="Имя" class="popup__input popup-edit__input-name" required
           minlength="2" maxlength="40">
-        <span class="form__input-error login-error"></span>
+        <span class="form__input-error username-error"></span>
 
         <input id="description" name="description" placeholder="Вид деятельности"
           class="popup__input popup-edit__input-description" required minlength="2" maxlength="200">
@@ -110,7 +109,6 @@
       </article>
     </li>
   </template>
-  <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
