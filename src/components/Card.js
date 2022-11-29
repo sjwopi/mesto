@@ -1,12 +1,9 @@
 export default class Card {
-  constructor(data, template, selectorsCard, handleOpenImage) {
+  constructor(data, selectorTemplate, selectorsCard, handleOpenImage) {
     this._name = data.name;
     this._link = data.link;
-    this._template = template;
+    this._template = document.querySelector(selectorTemplate).content;
     this._selectors = selectorsCard;
-    this._popupPhoto = document.querySelector(this._selectors.popupPhoto);
-    this._popupPhotoImg = this._popupPhoto.querySelector(this._selectors.popupPhotoImg);
-    this._popupPhotoText = this._popupPhoto.querySelector(this._selectors.popupPhotoText)
     this._handleOpenImage = handleOpenImage;
   }
   _getTemplate() {
@@ -20,6 +17,7 @@ export default class Card {
   }
   _deletePhoto() {
     this._element.remove();
+    this._element = null;
   }
   _setCardEventListeners() {
     this._buttonDelete.addEventListener('click', () => this._deletePhoto());
