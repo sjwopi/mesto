@@ -49,28 +49,31 @@ popupWithImage.setEventListeners();
 function handleOpenImage(name, link) {
   popupWithImage.open(name, link)
 }
-
+const validatorEdit = new FormValidator(selectorsValidate, formEdit);
+validatorEdit.enableValidation();
 const userInfo = new UserInfo({selectorUsername: '.profile__full-name', selectorDescription: '.profile__description'})
 const popupEditProfile = new PopupWithForm('.popup-edit', (profileData) => {
     userInfo.setUserInfo({
       username: profileData.username,
       description: profileData.description
     });
+    validatorEdit.enableValidation();
     popupEditProfile.close();});
 popupEditProfile.setEventListeners();
-const validatorEdit = new FormValidator(selectorsValidate, formEdit);
-validatorEdit.enableValidation();
 
+
+const validatorAdd = new FormValidator(selectorsValidate, formAdd);
+validatorAdd.enableValidation();
 const popupAddCard = new PopupWithForm('.popup-add', (formData) => {
     section.addItem(createCard({
       name: formData.name,
       link: formData.url
     }));
+    validatorAdd.enableValidation();
     popupAddCard.close();
   });
 popupAddCard.setEventListeners();
-const validatorAdd = new FormValidator(selectorsValidate, formAdd);
-validatorAdd.enableValidation();
+
 
 
 function createCard(data) {
