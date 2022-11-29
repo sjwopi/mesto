@@ -26,7 +26,6 @@ export default class Card {
   }
   createCard() {
     this._element = this._getTemplate();
-
     this._cardTitle.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;

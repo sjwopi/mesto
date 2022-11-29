@@ -64,9 +64,10 @@ validatorEdit.enableValidation();
 const popupAddCard = new PopupWithForm('.popup-add', (formData) => {
     section.addItem(createCard({
       name: formData.name,
-      link: formData.link
+      link: formData.url
     }));
-    popupAddCard.close();});
+    popupAddCard.close();
+  });
 popupAddCard.setEventListeners();
 const validatorAdd = new FormValidator(selectorsValidate, formAdd);
 validatorAdd.enableValidation();
