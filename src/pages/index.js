@@ -57,7 +57,6 @@ const popupEditProfile = new PopupWithForm('.popup-edit', (profileData) => {
       username: profileData.username,
       description: profileData.description
     });
-    validatorEdit.resetValidation();
     popupEditProfile.close();});
 popupEditProfile.setEventListeners();
 
@@ -69,7 +68,6 @@ const popupAddCard = new PopupWithForm('.popup-add', (formData) => {
       name: formData.name,
       link: formData.url
     }));
-    validatorAdd.resetValidation();
     popupAddCard.close();
   });
 popupAddCard.setEventListeners();
@@ -82,6 +80,7 @@ function createCard(data) {
   return element;
 }
 editButton.addEventListener('click', function () {
+  validatorEdit.resetValidation();
   popupEditProfile.open();
   const actualUserInfo = userInfo.getUserInfo();
   nameInputEdit.value = actualUserInfo.username;
@@ -89,5 +88,6 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
+  validatorAdd.resetValidation();
   popupAddCard.open();
 });
