@@ -57,7 +57,7 @@ const popupEditProfile = new PopupWithForm('.popup-edit', (profileData) => {
       username: profileData.username,
       description: profileData.description
     });
-    validatorEdit.enableValidation();
+    validatorEdit.resetValidation();
     popupEditProfile.close();});
 popupEditProfile.setEventListeners();
 
@@ -69,7 +69,7 @@ const popupAddCard = new PopupWithForm('.popup-add', (formData) => {
       name: formData.name,
       link: formData.url
     }));
-    validatorAdd.enableValidation();
+    validatorAdd.resetValidation();
     popupAddCard.close();
   });
 popupAddCard.setEventListeners();
