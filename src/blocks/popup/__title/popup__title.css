@@ -6,7 +6,9 @@
   font-weight: 900;
   line-height: 29px;
 }
-
+.popup__title_delete {
+  margin-bottom: 24px;
+}
 @media screen and (max-width: 600px) {
   .popup__title {
     margin: 0 0 45px 0;
