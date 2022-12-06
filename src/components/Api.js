@@ -12,7 +12,7 @@ export default class Api {
     }
     return Promise.reject(`Ошибка: ${res.status}`)
   }
-  
+
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
       method: 'GET',
@@ -24,7 +24,7 @@ export default class Api {
     return fetch(`${this._baseUrl}cards`, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify({name: data.name, link: data.url})
+      body: JSON.stringify({ name: data.name, link: data.url })
     })
       .then(res => this._getResponse(res));
   }
@@ -63,7 +63,7 @@ export default class Api {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({name: data.username, about: data.description})
+      body: JSON.stringify({ name: data.username, about: data.description })
     })
       .then(res => this._getResponse(res));
   }
@@ -72,7 +72,7 @@ export default class Api {
     return fetch(`${this._baseUrl}users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({avatar: data.url})
+      body: JSON.stringify({ avatar: data.urlavatar })
     })
       .then((res) => this._getResponse(res))
   }
