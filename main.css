@@ -6,7 +6,8 @@
 .content{margin:0}
 .profile{align-items:center;display:flex;justify-content:space-between;margin:0 auto 50px;max-width:880px}@media screen and (max-width:934px){.profile{flex-direction:column;margin:0 0 36px;text-align:center}}
 .profile__info{align-items:center;display:flex;margin:0;padding:0}@media screen and (max-width:934px){.profile__info{flex-direction:column}}
-.profile__avatar{border-radius:50%;height:120px;margin:0 30px 0 0;position:relative;transition:all .5s;width:120px;z-index:0}@media screen and (max-width:934px){.profile__avatar{margin:0 0 22px}}
+.profile__avatar{border-radius:50%;height:120px;margin:0;-o-object-fit:cover;object-fit:cover;position:relative;width:120px;z-index:-1}
+.profile__avatar-btn{background:transparent;border:none;border-radius:50%;height:120px;margin:0 30px 0 0;outline:none;padding:0;transition:all .5s ease-in-out;width:120px}.profile__avatar-btn:hover{background:url(images/edit-button.af236f6cf67005f1d7aa.svg) 50%/26px no-repeat;background-color:rgba(0,0,0,.8);cursor:pointer;outline:1px solid #000}@media screen and (max-width:934px){.profile__avatar-btn{margin:0 0 22px}}
 .profile__name-block{align-items:center;display:flex}
 .profile__full-name{font-size:42px;font-weight:500;line-height:48px;margin:0 18px 0 0;max-width:300px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:934px){.profile__full-name{margin:0 10px 0 0}}@media screen and (max-width:500px){.profile__full-name{font-size:27px;line-height:33px;max-width:190px}}
 .profile__description{font-size:18px;font-weight:400;line-height:22px;margin:16px 0 0;max-width:200px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:934px){.profile__description{margin:14px auto 36px}}@media screen and (max-width:500px){.profile__description{font-size:14px;line-height:17px;max-width:150px}}
@@ -14,9 +15,11 @@
 .profile__add-btn{background:url(images/add-btn.bed8c136e13907f5eefb.svg) 50%/22px no-repeat;border:2px solid #fff;border-radius:3px;cursor:pointer;height:50px;padding:0;transition:all .3s;width:150px}.profile__add-btn:hover{opacity:.6}@media screen and (max-width:934px){.profile__add-btn{background-size:16px;width:282px}}
 .popup{background-color:rgba(0,0,0,.6);bottom:0;left:0;opacity:0;position:fixed;right:0;top:0;transition:visibility .2s,opacity .2s linear;visibility:hidden;z-index:2}
 .popup__container{background-color:#fff;border-radius:10px;height:305px;left:50vw;padding:35px;position:relative;top:50vh;transform:translate(-50%,-50%);width:360px}@media screen and (max-width:600px){.popup__container{height:328px;padding:25px 22px;width:238px}}
+.popup__container_delete{height:110px}
+.popup__container_avatar{height:220px}
 .popup__close-btn{background:url(images/close-icon.039f1f5203f653b4bacd.svg) 50%/cover no-repeat;border:none;cursor:pointer;height:32px;padding:0;position:absolute;right:-40px;top:-40px;transition:all .3s;width:32px}.popup__close-btn:hover{opacity:.6}@media screen and (max-width:600px){.popup__close-btn{height:20px;right:0;top:-36px;width:20px}}
 .popup_opened{opacity:1;transition:visibility .2s,opacity .2s linear;visibility:visible}
-.popup__title{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0 0 44px;padding:0}@media screen and (max-width:600px){.popup__title{font-size:18px;line-height:22px;margin:0 0 45px}}
+.popup__title{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0 0 44px;padding:0}.popup__title_delete{margin-bottom:24px}@media screen and (max-width:600px){.popup__title{font-size:18px;line-height:22px;margin:0 0 45px}}
 .popup__form{display:flex;flex-direction:column;justify-content:space-between;margin:0;padding:0}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;height:27px;line-height:17px;margin:0 0 10px;outline:none;padding:4px 12px;width:calc(100% - 24px)}.popup__input:focus{border:2px solid #6aafff;border-radius:5px}.popup__input_invalid{border-bottom:1px solid red}.form__input-error{color:red;display:block;font-size:12px;font-weight:400;line-height:20px;min-height:40px;padding:0 12px}@media screen and (max-width:600px){.popup__input{margin:0 0 6px}.form__input-error{min-height:60px;padding:0}}
 .popup__save-form{background:#000;border:none;color:#fff;cursor:pointer;font-size:18px;font-weight:400;height:50px;line-height:22px;margin:12px 0 0;padding:0;text-align:center;transition:all .3s;width:100%}.popup__save-form:hover{opacity:.8}.popup__save-form_disabled{background:#fff;border:1px solid rgba(0,0,0,.2);color:rgba(0,0,0,.2)}@media screen and (max-width:600px){.popup__save-form{font-size:14px;line-height:27px}}
@@ -28,7 +31,9 @@
 .element__caption{align-items:center;display:flex;justify-content:space-between;margin:25px 20px 30px}
 .element__text{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:80%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .element__like{background:url(images/like.1ad06e85f169668a1f36.svg) 50%/cover no-repeat;border:none;cursor:pointer;height:19px;padding:0;transition:all .3s;width:22px}.element__like:hover{opacity:.6}
+.element__like-container{align-items:center;display:flex;flex-direction:column}
 .element__like_active{background:url(images/like-active.35948469632d0421d697.svg) 50%/cover no-repeat}
+.element__like-count{color:#000;font-size:20px;font-weight:500;line-height:29px;margin:0;padding:0}
 .element__delete-btn{background:url(images/Trash.e3c42771bff3aaa52f76.svg) 50%/contain no-repeat;border:none;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px;z-index:2}
 .popup-card{align-items:center;display:flex;justify-content:center;padding:12.5vh 12.5vw}.popup-card__container{position:relative}
 .popup-card__img{max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain}
