@@ -6,63 +6,37 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithConfirmation from '../components/PopupWithConfimation.js';
-import UserInfo from '../components/UserInfo.js'
+import UserInfo from '../components/UserInfo.js';
 
-const selectorsCard = {
-  card: '.elements__list-item',
-  img: '.element__img',
-  text: '.element__text',
-  like: '.element__like',
-  deleteBtn: '.element__delete-btn',
-  popupPhoto: '.popup-card',
-  popupPhotoImg: '.popup-card__img',
-  popupPhotoText: '.popup-card__text',
-  popupPhotoCloseBtn: '.popup-card__close-btn'
-};
-const selectorsValidate = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-form',
-  inactiveButtonClass: 'popup__save-form_disabled',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__error_invalid'
-};
-const popupEdit = document.querySelector('.popup-edit');
-const formEdit = popupEdit.querySelector('.popup__form');
-const editButton = document.querySelector('.profile__edit-btn');
-const popupAdd = document.querySelector('.popup-add');
-const formAdd = popupAdd.querySelector('.popup__form');
-const addButton = document.querySelector('.profile__add-btn');
-const avatar = document.querySelector('.profile__avatar');
-const buttonEditAvatar = document.querySelector('.profile__avatar-btn');
-const popupAvatar = document.querySelector('.popup-avatar');
-const formAvatar = popupAvatar.querySelector('.popup__form');
+import {
+  selectorsValidate, selectorsCard, editButton,
+  formEdit, nameInputEdit, descriptionInputEdit,
+  addButton, formAdd, buttonEditAvatar, avatar, formAvatar
+} from '../utils/constans.js';
 
-const formElementEdit = popupEdit.querySelector('.popup-edit__form');
-const nameInputEdit = formElementEdit.querySelector('.popup-edit__input-name');
-const descriptionInputEdit = formElementEdit.querySelector('.popup-edit__input-description');
-
-const api = new Api();
+const api = new Api({ 
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54/',
+    headers: {
+  authorization: 'e73982ce-3140-4f09-8668-b08c6beaa106',
+  'Content-Type': 'application/json'
+}});
 let userId;
 
 const userInfo = new UserInfo({ selectorUsername: '.profile__full-name', selectorDescription: '.profile__description', selectorAvatar: '.profile__avatar' })
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
-    userInfo.setUserInfo({ username: userData.name, description: userData.about, avatar: userData.avatar });
+    userInfo.setUserInfo({ username: userData.name, description: userData.about, avatar: userData.avatar, id: userData._id});
     userId = userData._id;
     section.renderItems(initialCards);
   })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
+  .catch(err => console.error(err))
 
 const section = new Section({
   renderer: (item) => {
     section.addItem(createCard(item));
   }
-},
-  '.elements__list');
+}, '.elements__list');
 
 const popupWithImage = new PopupWithImage('.popup-card');
 popupWithImage.setEventListeners();
@@ -74,12 +48,10 @@ const popupEditProfile = new PopupWithForm('.popup-edit', (profileData) => {
   api.editUserInfo(profileData)
     .then((profileData) => {
       userInfo.setUserInfo({ username: profileData.name, description: profileData.about, avatar: profileData.avatar });
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
       popupEditProfile.close();
+    })
+    .catch(err => console.error(err))
+    .finally(() => {
       popupEditProfile.loading(false);
     });
 });
@@ -93,12 +65,10 @@ const popupAddCard = new PopupWithForm('.popup-add', (formData) => {
   api.createCard(formData)
     .then((formData) => {
       section.addItem(createCard(formData), true);
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
       popupAddCard.close();
+    })
+    .catch(err => console.error(err))
+    .finally(() => {
       popupAddCard.loading(false);
     });
 });
@@ -120,13 +90,15 @@ function createCard(data) {
       api.setLike(cardId)
         .then((data) => {
           card.handleLikeCard(data);
-        });
+        })
+        .catch(err => console.error(err))
     },
     handleRemoveLike: (cardId) => {
       api.deleteLike(cardId)
         .then((data) => {
           card.handleLikeCard(data);
-        });
+        })
+        .catch(err => console.error(err))
     },
     handleDelete: (cardId) => {
       popupDeleteCard.open();
@@ -135,7 +107,8 @@ function createCard(data) {
           .then(() => {
             popupDeleteCard.close();
             card.deletePhoto();
-          });
+          })
+          .catch(err => console.error(err))
       });
     }
   });
@@ -149,13 +122,11 @@ const popupEditAvatar = new PopupWithForm('.popup-avatar', (data) => {
   popupEditAvatar.loading(true);
   api.editAvatar(data)
     .then((data) => {
-      avatar.src = data.avatar;
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
+      userInfo.renderAvatar(data)
       popupEditAvatar.close();
+    })
+    .catch(err => console.error(err))
+    .finally(() => {
       popupEditAvatar.loading(false);
     });
 }

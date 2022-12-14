@@ -22,14 +22,8 @@ export default class PopupWithForm extends Popup {
       this._submitForm(this._getInputValues());
     })
   }
-  _resetInputErrors(items) {
-    let errors = Object.keys(items)
-    errors.forEach((item) => {
-      this._popupForm.querySelector(`.${item}-error`).textContent = '';
-    })
-  }
   close() {
-    this._resetInputErrors(this._getInputValues());
+    this._popupForm.reset();
     super.close();
   }
   loading(isLoading) {

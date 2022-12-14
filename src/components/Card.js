@@ -25,7 +25,7 @@ export default class Card {
   }
   
   _setCardEventListeners() {
-    this._element.querySelector(this._selectors.img).addEventListener('click', () => this._handleOpenImage(this._name, this._link));
+    this._cardImage.addEventListener('click', () => this._handleOpenImage(this._name, this._link));
     this._buttonDelete.addEventListener('click', () => this._handleDelete(this._cardId));
     this._buttonLike.addEventListener('click', () => {
       if (this._buttonLike.classList.contains('element__like_active')) {
