@@ -26,7 +26,7 @@ const userInfo = new UserInfo({ selectorUsername: '.profile__full-name', selecto
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
-    userInfo.setUserInfo({ username: userData.name, description: userData.about, avatar: userData.avatar, id: userData._id});
+    userInfo.setUserInfo(userData);
     userId = userData._id;
     section.renderItems(initialCards);
   })
@@ -122,7 +122,7 @@ const popupEditAvatar = new PopupWithForm('.popup-avatar', (data) => {
   popupEditAvatar.loading(true);
   api.editAvatar(data)
     .then((data) => {
-      userInfo.renderAvatar(data)
+      userInfo.setUserInfo(data)
       popupEditAvatar.close();
     })
     .catch(err => console.error(err))
