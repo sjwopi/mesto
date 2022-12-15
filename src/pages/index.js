@@ -47,7 +47,7 @@ const popupEditProfile = new PopupWithForm('.popup-edit', (profileData) => {
   popupEditProfile.loading(true);
   api.editUserInfo(profileData)
     .then((profileData) => {
-      userInfo.setUserInfo({ username: profileData.name, description: profileData.about, avatar: profileData.avatar });
+      userInfo.setUserInfo(profileData);
       popupEditProfile.close();
     })
     .catch(err => console.error(err))
